@@ -24,6 +24,11 @@ class OrderResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::where('status', 'pending')->count();
@@ -185,7 +190,6 @@ class OrderResource extends Resource
     {
         return [
             'index' => Pages\ListOrders::route('/'),
-            'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
     }
